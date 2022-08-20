@@ -1,10 +1,11 @@
 const { Contact } = require('../../models/contacts');
 const { RequestError } = require('../../helpers');
 
-const updateById = async (req, res) => {
+const updateStatusContact = async (req, res) => {
     const { contactId } = req.params;
+    const { favorite } = req.body;
 
-    const contact = await Contact.findByIdAndUpdate(contactId, req.body, { new: true });
+    const contact = await Contact.findByIdAndUpdate(contactId, { favorite }, { new: true, });
     if (!contact) {
         throw RequestError(404, 'contact not found')
     }
@@ -12,11 +13,11 @@ const updateById = async (req, res) => {
     res.json({
         status: 'success',
         code: 200,
-        message: `contact with id:${contactId} updated`,
+        message: `contact with favorite id:${contactId} updated`,
         data: {
             contact,
         }
     })
 }
 
-module.exports = updateById;
+module.exports = updateStatusContact;
