@@ -30,7 +30,7 @@ const registerSchema = Joi.object({
     subscription: Joi.string()
         .default('starter')
         .valid('starter', 'pro', 'business'),
-    token: Joi.string().required(),
+    token: Joi.string().default(null),
 });
 
 const loginSchema = Joi.object({
