@@ -9,13 +9,13 @@ const auth = async (req, _, next) => {
 
     try {
         if (bearer !== 'Bearer') {
-            throw RequestError(401, 'Not authorized')
+            throw RequestError(401, 'Not authorized1')
         }
 
         const { id } = jwt.verify(token, SECRET_KEY);
         const user = await User.findById(id);
         if (!user || !user.token) {
-            throw RequestError(401, 'Not authorized')
+            throw RequestError(401, 'Not authorized2')
         }
 
         req.user = user;
