@@ -19,7 +19,7 @@ const userSchema = Schema(
         },
         token: {
             type: String,
-            default: null,
+            default: '',
         },
     },
     { versionKey: false, timestamps: true });
@@ -29,8 +29,8 @@ const registerSchema = Joi.object({
     email: Joi.string().trim().required(),
     subscription: Joi.string()
         .default('starter')
-        .valid('starter', 'pro', 'business'),
-    token: Joi.string().default(null),
+        .valid('starter', 'pro', 'business')
+        .trim(),
 });
 
 const loginSchema = Joi.object({
