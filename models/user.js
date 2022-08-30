@@ -19,7 +19,7 @@ const userSchema = Schema(
         },
         token: {
             type: String,
-            default: '',
+            default: null,
         },
     },
     { versionKey: false, timestamps: true });
