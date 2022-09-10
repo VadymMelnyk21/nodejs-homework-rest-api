@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
 const { v4 } = require('uuid');
 
+const { LOCALHOST } = process.env;
+
 const register = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -25,7 +27,7 @@ const register = async (req, res) => {
     const mail = {
         to: email,
         subject: 'Email confirmation',
-        html: `<p>Welcome, </p><a target="_blank" href="http://localhost:5000/api/users/verify/${verificationToken}">click to confirm</a>`,
+        html: `<p>Welcome, </p><a target="_blank" href="${LOCALHOST}/api/users/verify/${verificationToken}">click to confirm</a>`,
     }
 
     await sendEmail(mail);
