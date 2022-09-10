@@ -52,7 +52,11 @@ const loginSchema = Joi.object({
 
 const subscriptionSchema = Joi.object({
     subscription: Joi.any().valid('starter', 'pro', 'business'),
-})
+});
+
+const verifyEmailSchema = Joi.object({
+    email: Joi.string().email().required(),
+});
 
 const User = model('user', userSchema);
 
@@ -61,4 +65,5 @@ module.exports = {
     registerSchema,
     loginSchema,
     subscriptionSchema,
+    verifyEmailSchema,
 }
