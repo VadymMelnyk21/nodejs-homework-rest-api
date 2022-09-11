@@ -1,7 +1,7 @@
 const { User } = require('../../models/user');
 const { RequestError, sendEmail } = require('../../helpers');
 
-const { LOCALHOST } = process.env;
+const { HOST } = process.env;
 
 const resendVerifyEmail = async (req, res) => {
     const { email } = req.body;
@@ -18,7 +18,7 @@ const resendVerifyEmail = async (req, res) => {
     const mail = {
         to: email,
         subject: 'Email confirmation',
-        html: `<p>Welcome, </p><a target="_blank" href="${LOCALHOST}/api/users/verify/${user.verificationToken}">click to confirm</a>`,
+        html: `<p>Welcome, </p><a target="_blank" href="${HOST}/api/users/verify/${user.verificationToken}">click to confirm</a>`,
     }
 
     await sendEmail(mail);
